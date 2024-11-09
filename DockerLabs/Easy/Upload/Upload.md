@@ -2,7 +2,7 @@
 
 [Maquina](https://mega.nz/file/pOdwgYbB#8lTyf-mWFNq7xvKWObKUV9gkrZj3nzhuHVlGQmnZ6BQ)   \   [Dockerlabs](https://dockerlabs.es/)
 
-**TAGS:** `nmap` `wfuzz` `php`
+
 ## Reconocimiento
 
 Comenzamos con un escaneo de `nmap` a todos los puertos de la maquina vulnerable en busca de puertos abiertos.
