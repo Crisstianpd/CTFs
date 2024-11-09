@@ -87,7 +87,7 @@ Y hemos logrado ganar acceso como el usuario www-data.
 
 ## Escalada de privilegios
 
-Ejecuntadno un "sudo -l" para ver si exiten algun comando que podamos ejecutar con altos privilegios.
+Ejecuntadno un "sudo -l" para ver si existe algun comando que podamos ejecutar con altos privilegios.
 
 ```shell
 sudo -l
