@@ -1,11 +1,12 @@
 ![image](https://github.com/Crisstianpd/CTFs/blob/da0262891d6ffdbc167d40b4916f9aabcbd30f15/DockerLabs/Easy/Upload/imgs/upload-banner.png)
 
 [Maquina](https://mega.nz/file/pOdwgYbB#8lTyf-mWFNq7xvKWObKUV9gkrZj3nzhuHVlGQmnZ6BQ)
+
 [Dockerlabs](https://dockerlabs.es/)
 
 ## Reconocimiento
 
-Comenzamos con un escaneo de nmap a todos los puertos de la maquina vulnerable en busca de puertos abiertos.
+Comenzamos con un escaneo de `nmap` a todos los puertos de la maquina vulnerable en busca de puertos abiertos.
 
 ```shell
 nmap -p- --open -sS --min-rate 5000 -vvv 172.17.0.2 -oG allPorts
