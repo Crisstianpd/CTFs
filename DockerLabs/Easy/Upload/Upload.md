@@ -15,7 +15,8 @@ PORT   STATE SERVICE REASON
 ```
 
 El puerto 80 corresponde a un servicio de http(Hyper Text Transfer Protocol) o servicio web en pocas palabras.
-Ahora hacemos un escaneo sobre el unico puerto que se encuentra abierto(puerto 80) con un conjunto de scripts basicos de reconocimiento que trae por defecto nmap.
+
+Ahora hacemos un escaneo sobre este con un conjunto de scripts basicos de reconocimiento que trae por defecto nmap.
 
 ```shell
 nmap -p80 -sCV 172.17.0.2 -oN targeted
