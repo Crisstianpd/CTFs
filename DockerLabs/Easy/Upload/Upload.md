@@ -99,7 +99,7 @@ Vemos que podemos ejecutar el comando "env" como usuario root. Por ende, ejecuta
 sudo env /bin/bash
 ```
 
-![image]()
+![image](https://github.com/Crisstianpd/CTFs/blob/f45ffec0d097da4e06089b4f4224cc077d4140cd/DockerLabs/Easy/Upload/imgs/upload-img5.png)
 Y comprobamos finalmente atraves de un whoami he id que ya nos econtramos como usuario root.
 
 Y de esta forma hemos resuelto la maquina Upload de DockerLabs.
