@@ -6,7 +6,7 @@
 
 ## Reconocimiento
 
-Comenzamos con un escaneo de `nmap` a todos los puertos de la maquina vulnerable en busca de puertos abiertos.
+Comenzamos con un escaneo de `nmap` a *todos* **los** puertos de la maquina vulnerable en busca de puertos abiertos.
 
 ```shell
 nmap -p- --open -sS --min-rate 5000 -vvv 172.17.0.2 -oG allPorts
