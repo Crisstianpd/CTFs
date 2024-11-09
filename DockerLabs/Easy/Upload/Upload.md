@@ -26,7 +26,7 @@ PORT   STATE SERVICE VERSION
 |_http-title: Upload here your file
 |_http-server-header: Apache/2.4.52 (Ubuntu)
 ```
-Guiandonos por el escaneo podemos ver que dentro del puerto 80 se aloja una pagina web que, tal parece, nos dejara subir archivos a la maquina.
+Guiandonos por el escaneo podemos ver que dentro del puerto 80 se aloja una pagina web que, tal parece, nos dejara subir archivos al servidor.
 
 Visualizamos la pagina web.
 
