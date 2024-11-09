@@ -27,7 +27,8 @@ PORT   STATE SERVICE VERSION
 |_http-server-header: Apache/2.4.52 (Ubuntu)
 ```
 Guiandonos por el escaneo podemos ver que dentro del puerto 80 se aloja una pagina web que, tal parece, nos dejara subir archivos a la maquina.
-Hora de visualizar la pagina web.
+
+Visualizamos la pagina web.
 
 ![image](https://github.com/Crisstianpd/CTFs/blob/da0262891d6ffdbc167d40b4916f9aabcbd30f15/DockerLabs/Easy/Upload/imgs/upload-img1.png)
 
