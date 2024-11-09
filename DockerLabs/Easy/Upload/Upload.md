@@ -37,7 +37,7 @@ Al tener la oportunidad de subir archivos a una web, en lo primero que pensariam
 echo "<?php system(\$_GET['cmd']); ?>" >> test.php
 ```
 
-Despues de crear el archivo lo subiremos a la servidor. Y ahora tenemos que encontrar la ruta en donde se ha guardado nuestro archivo.
+Despues de crear el archivo lo subiremos a la servidor. Y ahora tenemos que encontrar la ruta en donde ha sido guardado nuestro archivo.
 
 Para ello, haremos uso de wfuzz para buscar esa ruta o directorio en donde deberia estar nuestro archivo test.php.
 
