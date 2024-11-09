@@ -33,7 +33,7 @@ Visualizamos la pagina web.
 
 ![image](https://github.com/Crisstianpd/CTFs/blob/da0262891d6ffdbc167d40b4916f9aabcbd30f15/DockerLabs/Easy/Upload/imgs/upload-img1.png)
 
-Al tener la oportunidad de subir archivos a una web, en lo primero que pensariamos es en subir un archivo *php* con el que podamos ejecutar comandos dentro de la maquina atraves de un paramentro definido en el archivo. Esto sera asi en caso de que la maquina no aplique ningun tipo de sanitizacion sobre los tipos de archivos que se pueden subir.
+Al tener la oportunidad de subir archivos a una web, en lo primero que pensariamos es en subir un archivo *php* con el que podamos ejecutar comandos dentro de la maquina atraves de un paramentro definido en el script. Esto sera asi en caso de que la maquina no aplique ningun tipo de sanitizacion sobre los tipos de archivos que se pueden subir.
 
 Creamos un archivo *php* con un paramentro `cmd` al cual le pasaremos los comandos que deceemos ejecutar.
 ```shell
