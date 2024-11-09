@@ -105,7 +105,7 @@ Vemos que podemos ejecutar el comando `env` como *root*. Por ende, ejecutamos un
 sudo env /bin/bash
 ```
 
-Comprobamos con un `whoami` he `id` que ya nos econtramos como usuario *root*.
+Y comprobamos con el comando `whoami` o `id` que ya somos usuario *root*.
 
 ![image](https://github.com/Crisstianpd/CTFs/blob/f45ffec0d097da4e06089b4f4224cc077d4140cd/DockerLabs/Easy/Upload/imgs/upload-img5.png)
 
