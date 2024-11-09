@@ -14,7 +14,7 @@ PORT   STATE SERVICE REASON
 80/tcp open  http    syn-ack ttl 64
 ```
 
-El puerto 80 corresponde a un servicio de http(Hyper Text Transfer Protocol) o servicio web en pocas palabras.
+El puerto 80 corresponde a un servicio http(Hyper Text Transfer Protocol) o servicio web en pocas palabras.
 
 Ahora hacemos un escaneo sobre este con un conjunto de scripts basicos de reconocimiento que trae por defecto nmap.
 
